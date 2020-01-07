@@ -39,8 +39,9 @@ def register(request):
 
 def login(request):
     if(request.method == 'POST'):
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username',None)
+        password = request.POST.get('password', None)
+        print(username,password)
 
         user = auth.authenticate(username = username, password = password)
         if user is not None:
